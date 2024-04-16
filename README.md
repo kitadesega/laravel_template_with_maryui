@@ -31,10 +31,8 @@ cp .env.example .env
 php artisan key:generate
 php artisan storage:link
 php artisan migrate:fresh --seed
-
-# 権限エラーになったら実行
-chmod 644 -R storage/logs/
-chmod 644 -R storage/framework/
+chmod 664 -R storage/logs/
+chmod 664 -R storage/framework/
 
 ```
 
