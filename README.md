@@ -25,13 +25,14 @@ docker compose exec app bash
 
 # コンテナ内で実行
 npm install
+npm run build
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan storage:link
 php artisan migrate:fresh --seed
-chmod 664 -R storage/logs/
-chmod 664 -R storage/framework/
+chmod 777 -R storage/logs/
+chmod 777 -R storage/framework/
 
 ```
 
