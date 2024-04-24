@@ -55,6 +55,15 @@ docker compose down --rmi all --volumes --remove-orphans
 docker compose up -d --build
 ```
 
+## 開発
+
+### jsやcssの変更をリアルタイムに反映する
+
+```bash
+# `docker compose exec app bash`でコンテナに入った状態で実行
+npm  run dev
+```
+
 ## Git関連
 
 ### `chmod 777`を実行した際にGitで全ファイル変更扱いになった時の対処法
