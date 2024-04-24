@@ -33,7 +33,6 @@ php artisan storage:link
 php artisan migrate:fresh --seed
 chmod 777 -R storage/logs/
 chmod 777 -R storage/framework/
-
 ```
 
 ### 2回目以降
@@ -54,4 +53,12 @@ docker compose down --rmi all --volumes --remove-orphans
 
 # 復活の呪文
 docker compose up -d --build
+```
+
+## Git関連
+
+### `chmod 777`を実行した際にGitで全ファイル変更扱いになった時の対処法
+
+```bash
+git config core.filemode false
 ```
