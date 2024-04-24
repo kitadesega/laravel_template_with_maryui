@@ -21,7 +21,7 @@ services:
     container_name: :tmp:_mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: appdb
+      MYSQL_DATABASE: :tmp:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'
@@ -44,6 +44,7 @@ services:
       COMPOSER_MEMORY_LIMIT: '-1'
     ports:
       - "9912:9912"
+      - "5173:5173"
     restart: always
     networks:
       - :tmp:_networks
