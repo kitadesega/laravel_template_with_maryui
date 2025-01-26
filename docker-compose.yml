@@ -1,27 +1,27 @@
 version: '3'
 services:
   nginx:
-    hostname: __tmp__web_server
+    hostname: :tmp:_web_server
     image: nginx:latest
-    container_name: __tmp__nginx
+    container_name: :tmp:_nginx
     ports:
       - "80:80"
       - "8080:8080"
     restart: no
     networks:
-      - __tmp__networks
+      - :tmp:_networks
     depends_on:
       - app
     volumes:
       - ./:/src
       - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
   mysql:
-    hostname: __tmp__db_server
+    hostname: :tmp:_db_server
     image: mysql:latest
-    container_name: __tmp__mysql
+    container_name: :tmp:_mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: appdb
+      MYSQL_DATABASE: :tmp:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'
@@ -33,37 +33,38 @@ services:
       - "3306:3306"
     restart: no
     networks:
-      - __tmp__networks
+      - :tmp:_networks
   app:
-    hostname: __tmp__app_server
+    hostname: :tmp:_app_server
     build:
       dockerfile: ./docker/php/Dockerfile
       context: .
-    container_name: __tmp__app
+    container_name: :tmp:_app
     environment:
       COMPOSER_MEMORY_LIMIT: '-1'
     ports:
       - "9912:9912"
+      - "5173:5173"
     restart: no
     networks:
-      - __tmp__networks
+      - :tmp:_networks
     working_dir: /src
     volumes:
       - ./:/src:cached
   phpmyadmin:
-    hostname: __tmp__phpmyadmin_server
+    hostname: :tmp:_phpmyadmin_server
     platform: linux/amd64
     image: phpmyadmin/phpmyadmin
-    container_name: __tmp__phpmyadmin
+    container_name: :tmp:_phpmyadmin
     depends_on:
       - mysql
     ports:
       - "3000:80"
     restart: no
     networks:
-      - __tmp__networks
+      - :tmp:_networks
     environment:
-      PMA_HOST: __tmp__db_server
+      PMA_HOST: :tmp:_db_server
       PMA_USER: root
       PMA_PASSWORD: password
       MEMORY_LIMIT: 256M
@@ -73,5 +74,5 @@ networks:
   default:
     external: true
     name: bridge
-  __tmp__networks:
-    name: docker.internal
+  :tmp:_networks:
+    name: :tmp:.internal
