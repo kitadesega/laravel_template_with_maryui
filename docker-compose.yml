@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
-    restart: always
+    restart: no
     networks:
       - __tmp__networks
     depends_on:
@@ -31,7 +31,7 @@ services:
       - ./storage/logs/mysql:/var/log/mysql
     ports:
       - "3306:3306"
-    restart: always
+    restart: no
     networks:
       - __tmp__networks
   app:
@@ -44,7 +44,7 @@ services:
       COMPOSER_MEMORY_LIMIT: '-1'
     ports:
       - "9912:9912"
-    restart: always
+    restart: no
     networks:
       - __tmp__networks
     working_dir: /src
@@ -59,7 +59,7 @@ services:
       - mysql
     ports:
       - "3000:80"
-    restart: always
+    restart: no
     networks:
       - __tmp__networks
     environment:
