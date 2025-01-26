@@ -1,4 +1,4 @@
-FROM php:8.3-fpm as base
+FROM php:8.4-fpm as base
 
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 RUN apt-get update \
