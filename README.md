@@ -71,3 +71,10 @@ npm  run dev
 ```bash
 git config core.filemode false
 ```
+
+### Livewire
+
+```bash
+# 新規画面追加
+php artisan make:volt counter --class
+```
